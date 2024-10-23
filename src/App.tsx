@@ -24,15 +24,12 @@ const App: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        {/* Tab Navigation */}
         <Navigation />
 
-        {/* Section for Block Selection */}
         <div ref={blockSelectionRef} id="block-selection" className="mt-1">
           <BlockSelection />
         </div>
 
-        {/* Section for Job Configuration */}
         <div ref={jobConfigurationRef} id="job-configuration" className="mt-1">
           <JobConfiguration />
         </div>

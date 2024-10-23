@@ -477,7 +477,7 @@ const Map: React.FC = () => {
       zoom: 17.2,
     }}
     mapStyle="mapbox://styles/mapbox/satellite-streets-v12"
-    mapboxAccessToken={MAPBOX_TOKEN1} // Add your Mapbox token here 
+    mapboxAccessToken={MAPBOX_TOKEN1} 
   >
     <Source id="my-geojson" type="geojson" data={geojson}>
       <Layer {...polygonLayerStyle} />
