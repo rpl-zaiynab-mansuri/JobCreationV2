@@ -468,7 +468,7 @@ const Map: React.FC = () => {
   };
 
   return ( 
-    <div className="flex flex-col w-[75%] max-md:ml-0 "> 
+    <div className="flex flex-col w-[75%] max-md:ml-0 overflow-hidden "> 
   <MapGL
     attributionControl={false}
     initialViewState={{
@@ -477,7 +477,7 @@ const Map: React.FC = () => {
       zoom: 17.2,
     }}
     mapStyle="mapbox://styles/mapbox/satellite-streets-v12"
-    mapboxAccessToken={MAPBOX_TOKEN1} 
+    mapboxAccessToken={MAPBOX_TOKEN1} // Add your Mapbox token here 
   >
     <Source id="my-geojson" type="geojson" data={geojson}>
       <Layer {...polygonLayerStyle} />

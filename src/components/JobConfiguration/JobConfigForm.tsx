@@ -3,8 +3,8 @@ import React from "react";
 
 const JobConfigForm: React.FC = () => {
   return (
-    <form className="flex flex-col items-start mt-2 text-black space-y-5">
-    <div className="flex items-center space-x-4">
+    <form className="flex flex-col items-start mt-2 text-black space-y-5 clickable">
+    <div className="flex items-center space-x-4 clickable">
       <label htmlFor="jobName" className="w-40 text-right">
         Job Name
       </label>
@@ -33,7 +33,7 @@ const JobConfigForm: React.FC = () => {
       </label>
       <input
         id="workOrder"
-        type="text"
+        type="number"
         className="px-3 py-2 rounded-md border border-neutral-300 flex-1"
         defaultValue="2"
       />
@@ -60,7 +60,7 @@ const JobConfigForm: React.FC = () => {
       <div className="flex gap-2">
         <input
           id="velocityLimit"
-          type="text"
+          type="number"
           className="px-3 py-2 rounded-md border border-neutral-300"
           defaultValue="5"
         />
@@ -75,7 +75,7 @@ const JobConfigForm: React.FC = () => {
       <div className="flex gap-2">
         <input
           id="averageRowWidth"
-          type="text"
+          type="number"
           className="px-3 py-2 rounded-md border border-neutral-300"
           defaultValue="2.4"
         />
@@ -104,7 +104,7 @@ const JobConfigForm: React.FC = () => {
       <div className="flex gap-2">
         <input
           id="maxAmbientTemp"
-          type="text"
+          type="number"
           className="px-3 py-2 rounded-md border border-neutral-300"
           defaultValue="45"
         />
@@ -119,7 +119,7 @@ const JobConfigForm: React.FC = () => {
       <div className="flex gap-2">
         <input
           id="maxWindSpeed"
-          type="text"
+          type="number"
           className="px-3 py-2 rounded-md border border-neutral-300"
           defaultValue="10"
         />

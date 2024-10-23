@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface FanConfigTableProps {
   mode: string;
@@ -11,14 +11,29 @@ interface FanConfig {
 }
 
 const FanConfigTable: React.FC<FanConfigTableProps> = ({ mode }) => {
-  const fanConfigs: FanConfig[] = [
+  // Initialize state for fanConfigs
+  const [fanConfigs, setFanConfigs] = useState<FanConfig[]>([
     { fanNumber: 1, speed: 2000, applicationRate: 55 },
     { fanNumber: 2, speed: 2000, applicationRate: 31 },
     { fanNumber: 3, speed: 2000, applicationRate: 20 },
     { fanNumber: 4, speed: 2000, applicationRate: 64 },
-  ];
+  ]);
 
-  const renderFanSpeedInput = (fan: FanConfig) => {
+  // Handle Fan Speed change
+  const handleSpeedChange = (index: number, value: number) => {
+    const updatedFans = [...fanConfigs];
+    updatedFans[index].speed = value;
+    setFanConfigs(updatedFans); // Update state
+  };
+
+  // Handle Application Rate change
+  const handleApplicationRateChange = (index: number, value: number) => {
+    const updatedFans = [...fanConfigs];
+    updatedFans[index].applicationRate = value;
+    setFanConfigs(updatedFans); // Update state
+  };
+
+  const renderFanSpeedInput = (fan: FanConfig, index: number) => {
     const isDisabled = mode === "even" && fan.fanNumber !== 1;
 
     return (
@@ -26,13 +41,13 @@ const FanConfigTable: React.FC<FanConfigTableProps> = ({ mode }) => {
         type="number"
         className="w-full px-2 py-1 border rounded"
         value={mode === "even" ? fanConfigs[0].speed : fan.speed}
-        disabled={isDisabled} // Disable for fans 2, 3, 4 in "even" mode
-        onChange={() => {}}
+        disabled={isDisabled}
+        onChange={(e) => handleSpeedChange(index, parseInt(e.target.value))} // Update speed on change
       />
     );
   };
 
-  const renderApplicationRateInput = (fan: FanConfig) => {
+  const renderApplicationRateInput = (fan: FanConfig, index: number) => {
     const isDisabled = mode === "even" && fan.fanNumber !== 1;
 
     return (
@@ -40,8 +55,8 @@ const FanConfigTable: React.FC<FanConfigTableProps> = ({ mode }) => {
         type="number"
         className="w-full px-2 py-1 border rounded"
         value={mode === "even" ? fanConfigs[0].applicationRate : fan.applicationRate}
-        disabled={isDisabled} // Disable for fans 2, 3, 4 in "even" mode
-        onChange={() => {}}
+        disabled={isDisabled}
+        onChange={(e) => handleApplicationRateChange(index, parseInt(e.target.value))} // Update application rate on change
       />
     );
   };
@@ -63,8 +78,8 @@ const FanConfigTable: React.FC<FanConfigTableProps> = ({ mode }) => {
               className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
             >
               <td className="px-4 py-6">Fan {fan.fanNumber}</td>
-              <td className="px-4 py-6">{renderFanSpeedInput(fan)}</td>
-              <td className="px-4 py-6">{renderApplicationRateInput(fan)}</td>
+              <td className="px-4 py-6">{renderFanSpeedInput(fan, index)}</td>
+              <td className="px-4 py-6">{renderApplicationRateInput(fan, index)}</td>
             </tr>
           ))}
         </tbody>
